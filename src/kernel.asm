@@ -10,6 +10,6 @@ section .text
 global start
 
 start:
-	cli
 	call main
 	hlt
+
