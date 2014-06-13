@@ -6,6 +6,15 @@ CFGSOURCE=script/grub.cfg
 CFGDEST=boot/grub/grub.cfg
 CFGMOUNTDEST=$MNT$CFGDEST
 
+set -e
+
+function i_am_done {
+	clear
+	echo "# Installed grub on $OF"
+	echo "# You can now run 'make' to build the kernel and"
+	echo "# then 'make install' to install it on $OF"
+}
+
 # Acquire loop device and mount it
 losetup $LOOP $OF
 mount $LOOP $MNT
@@ -23,3 +32,4 @@ cp $CFGSOURCE $CFGMOUNTDEST
 umount $MNT
 losetup -d $LOOP
 
+i_am_done
