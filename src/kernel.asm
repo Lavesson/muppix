@@ -8,9 +8,8 @@ section .text
 	dd - (0x1BADB002 + 0x00)
 
 global start
-extern kmain
 
 start:
 	cli
-	call kmain
+	call main
 	hlt
