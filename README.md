@@ -15,6 +15,9 @@ the darker corners of an OS, as well as giving myself an excuse to look into
 the POSIX standard, but that's far from now. Mostly, I'm just doing this
 because it's fun. That's really it.
 
+Muppix is released as open source under the MIT license. See LICENSE.txt for
+more details.
+
 ## Layout
 
 Quick layout of the repository:
