@@ -6,6 +6,9 @@ all:
 	$(CC) -m32 -c src/kernel.c -o obj/kernel.o
 	$(LD) -m elf_i386 -T src/link.ld -o bin/kernel obj/bootstrap.o obj/kernel.o
 
+install:
+	script/install-kernel.sh
+
 install-grub:
 	script/install-grub.sh
 
