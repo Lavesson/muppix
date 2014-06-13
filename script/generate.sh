@@ -30,3 +30,4 @@ losetup $LOOP $OF
 mkfs.ext2 $LOOP
 usage
 fdisk $OF
+losetup -d $LOOP
