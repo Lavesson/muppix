@@ -1,21 +1,8 @@
-void kmain(void) {
-	char* str = "My first kernel";
-	char* vidptr = (char*)0xb8000;
-	unsigned int i=0;
-	unsigned int j=0;
-	
-	while (j < 80*25*2) {
-		vidptr[j] = ' ';
-		vidptr[j+2] = 0x07;
+void main(void) {
+	char* string = "Well, this is embarrassing. I seem to be a pretty retarded OS.\0";
+	char *video = (char*)0xB8000;
+	while ( *string != 0 ) {
+		*video++ = *string++;
+		*video++ = 0x1f;
 	}
-
-	j=0;
-
-	while (str[j] != '\0') {
-		vidptr[i] = str[j];
-		vidptr[i+1] = 0x07;
-		++j;
-		i = i+2;
-	}
-	return;
 }
