@@ -67,13 +67,13 @@ and are willing to accept that risk.**
 
 Start by cloning the repository:
 
-	git clone git@github.com:Lavesson/muppix.git
+	$ git clone git@github.com:Lavesson/muppix.git
 
 Next step, you'll need to prepare an image file. I've hacked together a handy script
 and makefile target for this. Run the following with **root privilegies** from the
 root folder of the repository:
 
-	make img-gen
+	$ make img-gen
 
 This will create a 20 MB image file and attach it to `/dev/loop0` (the script will fail
 if something is already attached here). After attaching the image to the loop device,
@@ -107,7 +107,7 @@ up, and then issue `w` to write the partition tables to disk.
 Time to install **grub2** to the image file. From the root of the repo, again with superuser/root
 privilegies, type:
 
-	make install-grub
+		$ make install-grub
 
 You should get some output telling you that everything went fine. At this point, the image file
 is ready and prepared. You shouldn't have to do this more than once.
@@ -116,15 +116,23 @@ is ready and prepared. You shouldn't have to do this more than once.
 
 To build and install the kernel (installing it on the image file, nowhere else), simply type:
 
-		make
-		make install
+		$ make
+		$ make install
 
 The `make install` command needs root privilegies since it needs to access `losetup` and `mount`+`umount`
 You should be able to find the image file in `bin/disk.img`. If you're using QEmu, you should be
 able to just start Muppix by typing:
 
-		qemu bin/disk.img
+		$ qemu bin/disk.img
 
 You should see a grub boot menu and be able to select the kernel from there. If you want to change the
 kernel in some way, you should just have to redo the `make && make install` part above, as this will
 build and deploy the kernel to the image file.
+
+### Troubleshooting
+
+The one thing that might happen, is that the loop device might not always be released, and the temporary
+mount might not always be released correctly. In that case, run the following commands (with root privilegies)
+
+		$ umount mnt/		  # Notice that this is not /mnt, but the local mnt in the repo
+		$ losetup -d /dev/loop0
