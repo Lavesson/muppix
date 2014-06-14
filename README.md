@@ -133,6 +133,7 @@ build and deploy the kernel to the image file.
 
 The one thing that might happen, is that the loop device might not always be released, and the temporary
 mount might not always be released correctly. In that case, run the following commands (with root privilegies)
+from the repository root folder:
 
-		$ umount mnt/		  # Notice that this is not /mnt, but the local mnt in the repo
+		$ umount mnt/
 		$ losetup -d /dev/loop0
