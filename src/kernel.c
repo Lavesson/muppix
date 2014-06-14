@@ -1,8 +1,14 @@
+void print(char*);
+
 void main(void) {
-	char* string = "Well, this is embarrassing. I seem to be a pretty retarded OS.\0";
+	char* string = "Muppix 0.0.1\0";
+	print(string);
+}
+
+void print(char* text) {	
 	char *video = (char*)0xB8000;
-	while ( *string != 0 ) {
-		*video++ = *string++;
-		*video++ = 0x1f;
+	while ( *text != 0 ) {
+		*video++ = *text++;
+		*video++ = 0x0f;
 	}
 }
